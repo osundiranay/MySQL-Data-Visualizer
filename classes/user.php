@@ -21,6 +21,7 @@ class user {
                   WHERE admins.admin_id = users.nick_id
                   LIMIT $limit
                   OFFSET $offset";
+
     $info = $db->getData($userQuery);
 
     foreach ($info as $row){
@@ -31,6 +32,7 @@ class user {
   
   public function add($fName, $lName, $nickname, $hash){
     $db = new db();
+    
     if($db->insert($fName, $lName, $nickname, $hash)){
       return true;
     }

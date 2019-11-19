@@ -32,6 +32,7 @@ class db{
     $sql = mysqli_query($this->_conn, $query);
     $countRows = mysqli_query($this->_conn,'SELECT FOUND_ROWS()');
     $numRows = mysqli_fetch_assoc($countRows);
+    
     return intval($numRows['FOUND_ROWS()']);
   }
 
