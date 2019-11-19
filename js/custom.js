@@ -6,16 +6,16 @@ $( document ).ready(function() {
         var lastName = $('#lName').val();
         var nick = $('#nickname').val();
         if ($.trim(firstName) != '' && $.trim(lastName) != '' && $.trim(nick) != ''){
-        //if($.('#fName').val() != "" && $('#lName').val() != "" && $('#nickname').val() != "") {
             $.ajax({
                type: "POST",
                url: "user-process.php",
                data: $("#user-form").serialize(),
+               
                success: function(data){
                    $('#user-form')[0].reset();
+
                    if (data == "Exist") {
                       alert("Nickname exist");
-
                    }
                    console.log(data); // show response from the php script.
                }
@@ -36,7 +36,7 @@ $( document ).ready(function() {
                data: $("#login-form").serialize(),
                success: function(response){
                    $('#login-form')[0].reset();
-                   console.log(response);
+                   
                    if (response == "True") {
                        window.location.href = "info.php";
                    }
