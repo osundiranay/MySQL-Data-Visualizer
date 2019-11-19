@@ -56,6 +56,7 @@ class db{
     // Inserting in the admins table;
     $adminInsert = "INSERT INTO admins (nickname, password)
                     VALUES ('$nickname', '$hash')";
+                    
     if($this->_conn->query($adminInsert)) // Checking if inserting is successfull.
     {
       echo "Admin Inserted <br>";

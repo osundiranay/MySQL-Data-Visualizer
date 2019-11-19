@@ -12,6 +12,7 @@ class user {
     $this->_lName = "";
     $this->_nickname = "";
   }
+
   public function showUsers($limit, $offset){
     $db = new db();
     $counter = 1; // counter is used to display the number of each row in the table.
@@ -27,6 +28,7 @@ class user {
       $counter ++;
     }
   }
+  
   public function add($fName, $lName, $nickname, $hash){
     $db = new db();
     if($db->insert($fName, $lName, $nickname, $hash)){

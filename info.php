@@ -6,9 +6,11 @@ require_once 'classes/user.php';
   $db = new db();
   $limit = 5;
   $page = '';
+
   $allRows = $db->countRows("SELECT SQL_CALC_FOUND_ROWS user_id
                              FROM admins, users
                              WHERE admins.admin_id = users.nick_id");
+
   $allPages = ceil($allRows / $limit);
 
   if (isset($_GET['page'])) {
@@ -17,7 +19,9 @@ require_once 'classes/user.php';
   }
   else {
     $page = 1;
+    echo "Page number is: ". $page;
   }
+
   $offset = ($page - 1) * $limit;
 ?>
 
@@ -32,8 +36,9 @@ require_once 'classes/user.php';
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/tether.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/myScripts.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
   </head>
+
   <body>
   <div class="row" style="margin-top: 15%;">
     <div class="col-md-7 ml-5">
@@ -50,24 +55,29 @@ require_once 'classes/user.php';
         <?php $user->showUsers($limit, $offset); ?>
       </table>
     </div>
+
     <div class="col-md-4">
       <form id="user-form" class="form-horizontal bg-faded pl-3 pt-3 pb-4" action="user-process.php" method="post">
         <div class="form-group form-inline">
           <label class="mr-2 label-control" for="fName">First Name</label>
           <input id="fName" class="form-control" type="text" name="fName">
         </div>
+
         <div class="form-group form-inline">
           <label class="mr-2 ml-1" for="lName">Last Name</label>
           <input id="lName" class="form-control" type="text" name="lName" value="">
         </div>
+
         <div class="form-group form-inline">
           <label class="mr-2 ml-2" for="nickname">Nickname</label>
           <input id="nickname" class="form-control" type="text" name="nickname">
         </div>
+
         <button type="submit" class="btn btn-primary col-sm-5">Submit</button>
       </form>
     </div>
   </div>
+
   <div class="col-sm-9 mx-auto">
     <?php
       for ($i=1; $i <= $allPages ; $i++) {
